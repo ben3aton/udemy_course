@@ -1,6 +1,7 @@
 """Module to handle the extended lottery challenge"""
 
 import random
+import numpy as np
 
 # This line creates a set with 6 random numbers
 lottery_numbers = set(random.sample(range(22), 6))
@@ -13,7 +14,8 @@ players = [
     {'name': 'Jen', 'numbers': {19, 20, 12, 7, 3, 5}}
 ]
 
-print('Test')
-print(players[0]['name'])
+top_player = players[0]
 
-print('add some new code')
+matching_numbers = [len(x['numbers'].intersection(lottery_numbers)) for x in players]
+winning_player = players[np.argmax(matching_numbers)]
+print(f"Winning Player = {winning_player['name']} with a total of {np.argmax(matching_numbers)} winning numbers")
